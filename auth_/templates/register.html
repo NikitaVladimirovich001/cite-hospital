@@ -1,0 +1,14 @@
+{% extends 'root.html' %}
+{% load static %}
+
+{% block title %}<title>Регистрация</title>{% endblock %}
+
+{% block content %}
+<center><h4>Регистрация</h4></center>
+<br>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-success">Зарегистрироваться</button>
+</form>
+{% endblock %}

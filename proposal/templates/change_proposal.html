@@ -1,0 +1,25 @@
+{% extends 'root.html' %}
+{% load static %}
+
+{% block title %}<title>Изменение статуса заявки</title>{% endblock %}
+
+{% block content %}
+    <h1>Изменение статуса заявки</h1>
+    <p>Пользователь: {{ proposal.user }}</p>
+    <p>Доктор: {{ proposal.type }}</p>
+    <p>Статус: {{ proposal.status }}</p>
+    <p>Дата создания: {{ proposal.created_at }}</p>
+    <p>Дата изменения: {{ proposal.updated_at }}</p>
+    <p>Время посещения: {{ proposal.visit_time }}</p>
+
+    <form method="post" action="{% url 'change_proposal' proposal.id %}">
+        {% csrf_token %}
+        <label for="status">Изменить статус:</label>
+        <select name="status">
+            {% for status, _ in proposal.Status.choices %}
+                <option value="{{ status }}" {% if proposal.status == status %}selected{% endif %}>{{ status }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Изменить</button>
+    </form>
+{% endblock %}

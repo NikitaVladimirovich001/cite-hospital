@@ -1,0 +1,33 @@
+{% extends 'root.html' %}
+{% load static %}
+
+{% block title %}<title>Врачи</title>{% endblock %}
+
+{% block content %}
+<center><h4>Врачи</h4></center>
+<br>
+<br>
+<br>
+<div class='container-circle'>
+    {% for item in posts %}
+        <div class="wrap_circle">
+            <div class="circle">
+                <img src="{{ item.image.url }}" class="circle_img" alt="...">
+            </div>
+            <div class="circle_body">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'proposal' item.id %}" class="a_circle">
+                        <p class="circle_title">{{ item.name }}</p>
+                        <p class="circle_description" style="width: 208px;">{{ item.fio }}</p>
+                    </a>
+                {% else %}
+                    <a href="{% url 'login'%}" class="a_circle">
+                        <p class="circle_title">{{ item.name }}</p>
+                        <p class="circle_description" style="width: 208px;">{{ item.fio }}</p>
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

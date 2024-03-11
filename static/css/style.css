@@ -1,0 +1,56 @@
+
+
+
+.container-circle {
+    display: flex
+}
+
+.circle {
+    border-radius: 100px;
+    width: auto;
+    display: inline-block;
+}
+
+.circle_title {
+    text-align: center;
+    font-size: 22px;
+    width: 199px;
+    line-height: 1;
+    margin-top: 20px;
+    color: #37474f;
+}
+
+.circle_description {
+    text-align: center;
+    font-size: 19px;
+    width: 297px;
+    color: #9e9e9e;
+}
+
+.circle_body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.wrap_circle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 42px;
+}
+
+.circle_img {
+    width: 176px;
+    height: 176px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.a_circle {
+    text-decoration: none;
+}
+
+.circle_title:hover {
+    color: #35a1d5;
+}

@@ -1,0 +1,17 @@
+{% extends 'root.html' %}
+{% load static %}
+
+{% block title %}<title>Комментарии</title>{% endblock %}
+
+{% block content %}
+  <h4>Комментарии</h4>
+  {% for comment in comments %}
+    <p>{{ comment.created_at }} by {{ comment.author.username }}: {{ comment.text }}</p>
+  {% endfor %}
+
+  <form method="post" action="{% url 'comment' post.id %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Добавить комментарий</button>
+  </form>
+{% endblock %}

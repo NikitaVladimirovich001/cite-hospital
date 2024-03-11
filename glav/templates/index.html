@@ -1,0 +1,49 @@
+{% extends 'root.html' %}
+{% load static %}
+
+{% block title %}<title>Главная</title>{% endblock %}
+
+{% block content %}
+<center><h4>Основная информация</h4></center>
+<br>
+<br>
+<br>
+<div class='container-circle' style="    display: flex;
+    width: 100%;
+    justify-content: center;">
+    <div class="wrap_circle">
+        <div class="circle">
+            <img src="{% static 'image/1.png' %}" class="circle_img" alt="...">
+        </div>
+        <div class="circle_body">
+            <a href="{% url 'post' %}" class="a_circle">
+                <p class="circle_title">Запись на прием к врачу</p>
+            </a>
+            <p class="circle_description">Запись на плановый прием к врачу по месту жительства. Требуется
+                регистрация.</p>
+        </div>
+    </div>
+    <div class="wrap_circle">
+        <div class="circle">
+            <img src="{% static 'image/4.png' %}" class="circle_img" alt="...">
+        </div>
+        <div class="circle_body">
+            <a href="{% url 'about' %}" class="a_circle">
+                <p class="circle_title">О наших врачах</p>
+            </a>
+            <p class="circle_description">Опыт врача его направление, отзывы пациентов.</p>
+        </div>
+    </div>
+    <div class="wrap_circle">
+        <div class="circle">
+            <img src="{% static 'image/5.png' %}" class="circle_img" alt="...">
+        </div>
+        <div class="circle_body">
+            <a href="{% url 'timeslot' %}" class="a_circle">
+                <p class="circle_title">График работы</p>
+            </a>
+            <p class="circle_description">Информация о наличии врачей-специалистов в медицинских организациях, режиме их работы и расписании приемов</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'root.html' %}
+{% load static %}
+
+{% block title %}<title>Кабинет</title>{% endblock %}
+
+{% block content %}
+<center><h4>Ваш прием к врачу</h4></center>
+<br>
+<br>
+<br>
+<div class='container'>
+{% if not kabinet %}
+    <p>Вы не бронировали время</p>
+{% else %}
+    {% for item in kabinet %}
+        <p>Доктор: {{ item.type }}</p>
+        <p>Время посещения врача: {{ item.visit_time }}</p>
+        <p>Статус: {{ item.status }}</p>
+    {% endfor %}
+{% endif %}
+</div>
+{% endblock %}

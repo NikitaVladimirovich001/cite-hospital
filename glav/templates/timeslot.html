@@ -1,0 +1,31 @@
+{% extends 'root.html' %}
+{% load static %}
+
+{% block title %}
+    <title>Расписание</title>
+{% endblock %}
+
+{% block content %}
+    <center><h4>Расписание</h4></center><br>
+
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Врач</th>
+                    <th>График работы</th>
+                    <th>Имя врача</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in timeslot %}
+                    <tr>
+                        <td>{{ item.doctor }}</td>
+                        <td>{{ item.day }} - {{ item.schedule }}</td>
+                        <td>{{ item.doctor.fio }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

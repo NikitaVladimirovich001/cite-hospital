@@ -1,0 +1,39 @@
+{% extends 'root.html' %}
+{% load static %}
+
+{% block title %}<title>Все заявки</title>{% endblock %}
+
+{% block content %}
+    <h1>Все заявки</h1>
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Пользователь</th>
+                <th scope="col">Доктор</th>
+                <th scope="col">Статус</th>
+                <th scope="col">Дата создания</th>
+                <th scope="col">Дата изменения</th>
+                <th scope="col">Время посещения</th>
+                <th scope="col">Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for proposal in proposals %}
+                <tr>
+                    <th scope="row">{{ proposal.id }}</th>
+                    <td>{{ proposal.user }}</td>
+                    <td>{{ proposal.type }}</td>
+                    <td>{{ proposal.status }}</td>
+                    <td>{{ proposal.created_at }}</td>
+                    <td>{{ proposal.updated_at }}</td>
+                    <td>{{ proposal.visit_time }}</td>
+                    <td>
+                        <a href="{% url 'change_proposal' proposal.id %}">Изменить статус</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

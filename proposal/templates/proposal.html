@@ -1,0 +1,40 @@
+{% extends 'root.html' %}
+{% load static %}
+
+{% block title %}<title>Заявка</title>{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <center><h2>Заявка</h2></center>
+
+    <h4>Ваши данные:</h4>
+    <p>Имя: {{ user.name }}</p>
+    <p>Фамилия: {{ user.surname }}</p>
+    <p>Отчество: {{ user.patronymic }}</p>
+    <p>Email: {{ user.email }}</p>
+
+    <h3>Выберите день:</h3>
+    <div class="btn-group" role="group" aria-label="Days">
+        {% for day in days %}
+            <a href="?selected_day={{ day.date.isoformat }}" class="btn btn-primary">{{ day.date|date:'d/m/Y' }}</a>
+        {% endfor %}
+    </div>
+
+{% if selected_day %}
+    {% if time_slots %}
+        <h3>Доступное время записи:</h3>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {% for slot in time_slots %}
+                <button class="btn btn-success btn-time-slot" type="submit" name="selected_time" value="{{ slot|date:'H:i' }}">{{ slot|date:'H:i' }}</button>
+            {% endfor %}
+        </form>
+    {% else %}
+        <p>Все время забронировано</p>
+    {% endif %}
+{% else %}
+    <p>Выберите день недели</p>
+{% endif %}
+</div>
+{% endblock %}
