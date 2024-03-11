@@ -2,7 +2,8 @@ from datetime import timedelta, datetime, timezone
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 from .models import Proposal, WorkDaysSchedule, Post, Days
-from .forms import ProposalForm, ChangeProposalForm
+from .forms import ProposalForm
+from django.contrib.auth.decorators import user_passes_test
 
 week_days_name = [
     'Понедельник',
@@ -111,10 +112,12 @@ def proposal(request, doctor_id):
     return render(request, 'proposal.html', context)
 
 
+@user_passes_test(lambda user: user.is_authenticated and user.is_moderator)
 def change_proposal(request, proposal_id):
     proposal = get_object_or_404(Proposal, id=proposal_id)
 
     if request.method == 'POST':
+
         new_status = request.POST.get('status')
         proposal.status = new_status
         proposal.save()
@@ -122,6 +125,7 @@ def change_proposal(request, proposal_id):
     return render(request, 'change_proposal.html', {'proposal': proposal})
 
 
+@user_passes_test(lambda user: user.is_authenticated and user.is_moderator)
 def all_proposals(request):
     proposals = Proposal.objects.all()
     return render(request, 'all_proposals.html', {'proposals': proposals})
